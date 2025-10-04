@@ -1,0 +1,21 @@
+{
+  "schema_version": "vpfcfg-manifest/1.2",
+  "name": "VPF Integrated Bundle (1.0–360.x) — PAVAM Added",
+  "version": "2025-09-25.pavam",
+  "payload_url": "sandbox:/mnt/data/VPF_Integrated_Payload_2025-09-25_PAVAM.vpfcfg",
+  "payload_encoding": "base64+gzip",
+  "checksum": {
+    "algo": "SHA-256",
+    "value": "840122ddc78e8d0db4b169b96c870934b86e23efaa6520589e934366484f6433"
+  },
+  "engines_supported": [
+    "GPT-5 Thinking",
+    "DeepSeek",
+    "Grok",
+    "Claude",
+    "Gemini",
+    "NovaAI",
+    "Local"
+  ],
+  "about": "Adds Pan-African Voice & Accent Mode (360.x) to full VPF suite. Encoded for portability; load as system config."
+}

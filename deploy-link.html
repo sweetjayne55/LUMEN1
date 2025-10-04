@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deploy to Netlify Link Helper</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 40px; }
+      .card { max-width: 720px; margin: 0 auto; padding: 24px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+      input { width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; }
+      button { margin-top: 14px; padding: 12px 18px; border: 0; border-radius: 10px; font-size: 16px; cursor: pointer; }
+      .primary { background: #00ad9f; color: #fff; }
+      .link { margin-left: 8px; background: #f3f4f6; }
+      .out { margin-top: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; }
+      small { color:#6b7280; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Generate your Deploy to Netlify link</h1>
+      <p>Paste your public GitHub repo URL below, then click <b>Generate & Go</b>.</p>
+      <input id="repo" placeholder="https://github.com/yourname/vpf-app" />
+      <div>
+        <button class="primary" onclick="go()">Generate &amp; Go</button>
+        <button class="link" onclick="copy()">Copy link</button>
+      </div>
+      <div class="out" id="out"></div>
+      <p><small>Tip: The repo must be accessible to Netlify. For private repos, connect GitHub to Netlify from the dashboard.</small></p>
+    </div>
+    <script>
+      function makeLink(repo) {
+        const base = 'https://app.netlify.com/start/deploy?repository=';
+        return base + encodeURIComponent(repo);
+      }
+      function go() {
+        const repo = document.getElementById('repo').value.trim();
+        if (!repo) { alert('Please paste your GitHub repository URL.'); return; }
+        const link = makeLink(repo);
+        document.getElementById('out').textContent = link;
+        window.open(link, '_blank');
+      }
+      async function copy() {
+        const repo = document.getElementById('repo').value.trim();
+        if (!repo) { alert('Please paste your GitHub repository URL.'); return; }
+        const link = makeLink(repo);
+        try { await navigator.clipboard.writeText(link); alert('Link copied to clipboard!'); }
+        catch { prompt('Copy this link:', link); }
+        document.getElementById('out').textContent = link;
+      }
+    </script>
+  </body>
+</html>
